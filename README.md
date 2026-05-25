@@ -1,4 +1,5 @@
-Global Sales Operations Intelligence-A SQL and PowerBI Analysis of Northwind Traders
+#Global Sales Operations Intelligence-A SQL and PowerBI Analysis of Northwind Traders
+
 I just completed a Business Intelligence project that challenged me to think like a data analyst for a global gourmet food supplier  and I'm genuinely proud of what came out of it.
 
 THESE ARE THE TOOLS I USED
