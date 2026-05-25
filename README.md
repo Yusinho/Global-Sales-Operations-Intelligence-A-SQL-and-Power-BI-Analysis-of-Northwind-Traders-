@@ -1,0 +1,1 @@
+# Global-Sales-Operations-Intelligence-A-SQL-and-Power-BI-Analysis-of-Northwind-Traders-
