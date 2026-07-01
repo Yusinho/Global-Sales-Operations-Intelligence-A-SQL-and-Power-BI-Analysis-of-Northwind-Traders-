@@ -195,7 +195,7 @@ Calendar =
 
 ### Page 1 — Sales & Revenue Overview
 
-![Page 1 - Sales & Revenue Overview](screenshots/page1_sales_revenue.png)
+<img width="800" height="446" alt="image" src="https://github.com/user-attachments/assets/508d1615-9a6d-4358-a017-4fff69c54e78" />
 
 This page gives an executive-level snapshot of revenue performance, order trends, and geographic distribution.
 
@@ -234,7 +234,7 @@ This page gives an executive-level snapshot of revenue performance, order trends
 
 ### Page 2 — Product & Category Intelligence
 
-![Page 2 - Product & Category Intelligence](screenshots/page2_product_category.png)
+<img width="480" height="264" alt="image" src="https://github.com/user-attachments/assets/ec512d56-483b-4329-a1f2-4ce3b55d5b7e" />
 
 This page dives into product performance, category contribution, discount strategy impact, and the active vs discontinued product split.
 
@@ -293,7 +293,7 @@ This page dives into product performance, category contribution, discount strate
 
 ### Page 3 — Regional, Operational & People Performance
 
-![Page 3 - Regional, Operational & People Performance](screenshots/page3_regional_ops.png)
+<img width="480" height="269" alt="image" src="https://github.com/user-attachments/assets/ae30d970-b77c-4d11-aca3-2a1891eef442" />
 
 This page benchmarks logistics providers, maps freight patterns, ranks employees by sales, and identifies the top revenue-generating cities.
 
@@ -698,8 +698,5 @@ This project was built as part of a growing portfolio in **Business Intelligence
 *Built with curiosity and a commitment to turning data into decisions.*
 Link to reports and dashboard- https://drive.google.com/drive/folders/1eV0GpY6i5ED9Rt1SEfqgjlBKbHvo9nSC?usp=sharing
 
-<img width="800" height="446" alt="image" src="https://github.com/user-attachments/assets/508d1615-9a6d-4358-a017-4fff69c54e78" />
-<img width="480" height="264" alt="image" src="https://github.com/user-attachments/assets/ec512d56-483b-4329-a1f2-4ce3b55d5b7e" />
-<img width="480" height="269" alt="image" src="https://github.com/user-attachments/assets/ae30d970-b77c-4d11-aca3-2a1891eef442" />
 
 
