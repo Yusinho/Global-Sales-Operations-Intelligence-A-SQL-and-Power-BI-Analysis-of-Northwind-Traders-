@@ -22,6 +22,7 @@
 - [Business Recommendations](#business-recommendations)
 - [Project Structure](#project-structure)
 - [How to Use This Report](#how-to-use-this-report)
+- [Author](#-author)
 
 ---
 
@@ -692,6 +693,11 @@ This project was built as part of a growing portfolio in **Business Intelligence
 - Apply **SQL logic** to business questions before translating to Power BI
 - Build **multi-page interactive dashboards** with consistent UX and clear visual hierarchy
 - Derive **actionable business insights** — not just describe what the charts show
+
+---
+## 👤 Author
+
+*(Yusuf Shotunde, LinkedIn: www.linkedin.com/in/yusuf-shotunde / GitHub: https://github.com/Yusinho/ / CV: https://github.com/Yusinho/my-portfolio/blob/main/Yusuf_Lanre_Shotunde_CV.pdf )*
 
 ---
 
