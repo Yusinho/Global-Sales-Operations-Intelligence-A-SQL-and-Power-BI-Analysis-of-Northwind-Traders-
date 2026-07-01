@@ -1,77 +1,96 @@
-#🌍 Global Sales Operations Intelligence
+# 🌍 Global Sales Operations Intelligence
+## A SQL & Power BI Analysis of Northwind Traders
 
-A SQL & Power BI Analysis of Northwind Traders
+> A comprehensive Business Intelligence project analysing a global gourmet food supplier across **sales performance**, **product intelligence**, **regional operations**, and **people performance** — built on a 7-table relational data model with 15+ DAX measures across a 3-page interactive Power BI dashboard.
 
+---
 
-A comprehensive Business Intelligence project analysing a global gourmet food supplier across sales performance, product intelligence, regional operations, and people performance — built on a 7-table relational data model with 15+ DAX measures across a 3-page interactive Power BI dashboard.
+## 📌 Table of Contents
 
+- [Project Overview](#project-overview)
+- [Dataset Description](#dataset-description)
+- [Tools & Technologies](#tools--technologies)
+- [Data Architecture & Modelling](#data-architecture--modelling)
+- [Data Preparation & Cleaning](#data-preparation--cleaning)
+- [Dashboard Walkthrough](#dashboard-walkthrough)
+  - [Page 1 — Sales & Revenue Overview](#page-1--sales--revenue-overview)
+  - [Page 2 — Product & Category Intelligence](#page-2--product--category-intelligence)
+  - [Page 3 — Regional, Operational & People Performance](#page-3--regional-operational--people-performance)
+- [DAX Measures & Calculated Columns](#dax-measures--calculated-columns)
+- [SQL Logic Applied](#sql-logic-applied)
+- [Key Findings & Insights](#key-findings--insights)
+- [Business Recommendations](#business-recommendations)
+- [Project Structure](#project-structure)
+- [How to Use This Report](#how-to-use-this-report)
 
+---
 
+## Project Overview
 
-📌 Table of Contents
-
-
-Project Overview
-Dataset Description
-Tools & Technologies
-Data Architecture & Modelling
-Data Preparation & Cleaning
-Dashboard Walkthrough
-
-Page 1 — Sales & Revenue Overview
-Page 2 — Product & Category Intelligence
-Page 3 — Regional, Operational & People Performance
-
-
-
-DAX Measures & Calculated Columns
-SQL Logic Applied
-Key Findings & Insights
-Business Recommendations
-Project Structure
-How to Use This Report
-
-
-
-Project Overview
-
-This project analyses the Northwind Traders dataset — a classic sample database modelling a fictional gourmet food supplier with global operations. The goal was to think and operate like a data analyst embedded in the business: asking the right questions, engineering the data model correctly, and translating raw transactional data into executive-ready insights across sales, product, regional, and people performance.
+This project analyses the **Northwind Traders** dataset — a classic sample database modelling a fictional gourmet food supplier with global operations. The goal was to think and operate like a data analyst embedded in the business: asking the right questions, engineering the data model correctly, and translating raw transactional data into **executive-ready insights** across sales, product, regional, and people performance.
 
 The project covers the full BI lifecycle:
 
+```
 Raw CSV/Excel ingestion
     → Power Query (M Language) cleaning & transformation
         → 7-table relational data model in Power BI
             → DAX calculated columns & KPI measures
                 → 3-page interactive dashboard
                     → Business insight & recommendations
+```
 
-Fiscal years covered: 1996 – 1998
-Dashboard pages: 3
-DAX measures: 15+
-Interactive slicers: 5 (Year · Country · Category · Shipper · Employee)
+**Fiscal years covered:** 1996 – 1998
+**Dashboard pages:** 3
+**DAX measures:** 15+
+**Interactive slicers:** 5 (Year · Country · Category · Shipper · Employee)
 
+---
 
-Dataset Description
+## Dataset Description
 
-The Northwind Traders dataset consists of 7 relational tables covering the full order-to-delivery pipeline of a global food supplier.
+The Northwind Traders dataset consists of **7 relational tables** covering the full order-to-delivery pipeline of a global food supplier.
 
-TableDescriptionKey FieldsOrdersAll customer orders placedOrderID, CustomerID, EmployeeID, ShipperID, OrderDate, ShippedDate, FreightOrder DetailsLine-item breakdown per orderOrderID, ProductID, UnitPrice, Quantity, DiscountProductsProduct catalogueProductID, ProductName, CategoryID, UnitPrice, DiscontinuedCategoriesProduct category groupingsCategoryID, CategoryNameCustomersCustomer master dataCustomerID, CompanyName, Country, CityEmployeesSales team recordsEmployeeID, FirstName, LastName, TitleShippersLogistics providersShipperID, CompanyName
+| Table | Description | Key Fields |
+|---|---|---|
+| **Orders** | All customer orders placed | `OrderID`, `CustomerID`, `EmployeeID`, `ShipperID`, `OrderDate`, `ShippedDate`, `Freight` |
+| **Order Details** | Line-item breakdown per order | `OrderID`, `ProductID`, `UnitPrice`, `Quantity`, `Discount` |
+| **Products** | Product catalogue | `ProductID`, `ProductName`, `CategoryID`, `UnitPrice`, `Discontinued` |
+| **Categories** | Product category groupings | `CategoryID`, `CategoryName` |
+| **Customers** | Customer master data | `CustomerID`, `CompanyName`, `Country`, `City` |
+| **Employees** | Sales team records | `EmployeeID`, `FirstName`, `LastName`, `Title` |
+| **Shippers** | Logistics providers | `ShipperID`, `CompanyName` |
 
-Key Derived Metrics
+### Key Derived Metrics
 
-FieldTypeFormula / LogicGrossRevenueCalculated ColumnQuantity × UnitPriceNetRevenueCalculated ColumnGrossRevenue × (1 − Discount)DaysToShipCalculated ColumnShippedDate − OrderDateShippingStatusCalculated ColumnIF DaysToShip ≤ threshold → "On Time" ELSE "Late"ProductStatusCalculated ColumnIF Discontinued = 1 → "Discontinued" ELSE "Active"
+| Field | Type | Formula / Logic |
+|---|---|---|
+| `GrossRevenue` | Calculated Column | `Quantity × UnitPrice` |
+| `NetRevenue` | Calculated Column | `GrossRevenue × (1 − Discount)` |
+| `DaysToShip` | Calculated Column | `ShippedDate − OrderDate` |
+| `ShippingStatus` | Calculated Column | `IF DaysToShip ≤ threshold → "On Time" ELSE "Late"` |
+| `ProductStatus` | Calculated Column | `IF Discontinued = 1 → "Discontinued" ELSE "Active"` |
 
+---
 
-Tools & Technologies
+## Tools & Technologies
 
-ToolRole in ProjectMicrosoft Power BI DesktopData modelling, DAX, dashboard designPower Query (M Language)Data cleaning, type casting, table transformationDAX (Data Analysis Expressions)Calculated columns, KPI measures, time intelligenceSQL LogicApplied during data modelling — join logic, filtering, aggregations translated into Power BI relationships and DAXExcel / CSVRaw data source ingestionBing MapsGeographic visualisation (Revenue by Country map)
+| Tool | Role in Project |
+|---|---|
+| **Microsoft Power BI Desktop** | Data modelling, DAX, dashboard design |
+| **Power Query (M Language)** | Data cleaning, type casting, table transformation |
+| **DAX (Data Analysis Expressions)** | Calculated columns, KPI measures, time intelligence |
+| **SQL Logic** | Applied during data modelling — join logic, filtering, aggregations translated into Power BI relationships and DAX |
+| **Excel / CSV** | Raw data source ingestion |
+| **Bing Maps** | Geographic visualisation (Revenue by Country map) |
 
+---
 
-Data Architecture & Modelling
+## Data Architecture & Modelling
 
-The data model follows a star schema design — a central fact table (Order Details) surrounded by dimension tables connected via defined relationships.
+The data model follows a **star schema** design — a central fact table (`Order Details`) surrounded by dimension tables connected via defined relationships.
 
+```
                     ┌─────────────┐
                     │  Categories │
                     └──────┬──────┘
@@ -93,23 +112,33 @@ The data model follows a star schema design — a central fact table (Order Deta
                     │  Calendar   │
                     │   Table     │
                     └─────────────┘
+```
 
-Relationship Summary
+### Relationship Summary
 
-From TableTo TableCardinalityJoin KeyOrder DetailsOrdersMany:1OrderIDOrder DetailsProductsMany:1ProductIDProductsCategoriesMany:1CategoryIDOrdersCustomersMany:1CustomerIDOrdersEmployeesMany:1EmployeeIDOrdersShippersMany:1ShipperIDOrdersCalendarMany:1OrderDate
+| From Table | To Table | Cardinality | Join Key |
+|---|---|---|---|
+| Order Details | Orders | Many:1 | `OrderID` |
+| Order Details | Products | Many:1 | `ProductID` |
+| Products | Categories | Many:1 | `CategoryID` |
+| Orders | Customers | Many:1 | `CustomerID` |
+| Orders | Employees | Many:1 | `EmployeeID` |
+| Orders | Shippers | Many:1 | `ShipperID` |
+| Orders | Calendar | Many:1 | `OrderDate` |
 
-A Calendar table was created to enable time intelligence functions (YoY, QoQ, period comparisons). All relationships are single-directional to maintain filter context integrity.
+A **Calendar table** was created to enable time intelligence functions (YoY, QoQ, period comparisons). All relationships are single-directional to maintain filter context integrity.
 
+---
 
-Data Preparation & Cleaning
+## Data Preparation & Cleaning
 
-All transformations were performed in Power Query (M Language) before loading into the data model.
+All transformations were performed in **Power Query (M Language)** before loading into the data model.
 
-Steps Applied
+### Steps Applied
 
-1. Data type casting
-
-m// Ensure correct types on Order Details
+**1. Data type casting**
+```m
+// Ensure correct types on Order Details
 = Table.TransformColumnTypes(Source, {
     {"OrderID", Int64.Type},
     {"ProductID", Int64.Type},
@@ -117,30 +146,35 @@ m// Ensure correct types on Order Details
     {"Quantity", Int64.Type},
     {"Discount", Percentage.Type}
 })
+```
 
-2. Null and blank handling
-
-m// Fill nulls in ShippedDate with OrderDate (unshipped = same-day proxy)
+**2. Null and blank handling**
+```m
+// Fill nulls in ShippedDate with OrderDate (unshipped = same-day proxy)
 = Table.ReplaceValue(Orders, null, each [OrderDate], Replacer.ReplaceValue, {"ShippedDate"})
+```
 
-3. Calculated column: GrossRevenue
-
-m= Table.AddColumn(OrderDetails, "GrossRevenue",
+**3. Calculated column: GrossRevenue**
+```m
+= Table.AddColumn(OrderDetails, "GrossRevenue",
     each [Quantity] * [UnitPrice], Currency.Type)
+```
 
-4. Calculated column: NetRevenue
-
-m= Table.AddColumn(OrderDetails, "NetRevenue",
+**4. Calculated column: NetRevenue**
+```m
+= Table.AddColumn(OrderDetails, "NetRevenue",
     each [GrossRevenue] * (1 - [Discount]), Currency.Type)
+```
 
-5. Calculated column: DaysToShip
-
-m= Table.AddColumn(Orders, "DaysToShip",
+**5. Calculated column: DaysToShip**
+```m
+= Table.AddColumn(Orders, "DaysToShip",
     each Duration.Days([ShippedDate] - [OrderDate]), Int64.Type)
+```
 
-6. Calendar table creation (M)
-
-mCalendar =
+**6. Calendar table creation (M)**
+```m
+Calendar =
     let
         StartDate = #date(1996, 1, 1),
         EndDate = #date(1998, 12, 31),
@@ -153,191 +187,180 @@ mCalendar =
         WithQuarter = Table.AddColumn(WithMonthName, "Quarter", each "Q" & Text.From(Date.QuarterOfYear([Date])), type text)
     in
         WithQuarter
+```
 
+---
 
-Dashboard Walkthrough
+## Dashboard Walkthrough
 
-Page 1 — Sales & Revenue Overview
+### Page 1 — Sales & Revenue Overview
 
-Show Image
+![Page 1 - Sales & Revenue Overview](screenshots/page1_sales_revenue.png)
 
 This page gives an executive-level snapshot of revenue performance, order trends, and geographic distribution.
 
-Slicers
+#### Slicers
+- **Year** slider: 2013–2015 range filter (mapped to 1996–1998 fiscal years)
+- **Country** tile slicer: 15 countries including Argentina, Austria, Belgium, Brazil, Canada, Denmark, Finland, France, Germany, Ireland, Italy, Mexico, Norway, Poland, Portugal
+- **Category** tile slicer: Beverages · Condiments · Confections · Dairy Products
 
+#### KPI Cards
 
-Year slider: 2013–2015 range filter (mapped to 1996–1998 fiscal years)
-Country tile slicer: 15 countries including Argentina, Austria, Belgium, Brazil, Canada, Denmark, Finland, France, Germany, Ireland, Italy, Mexico, Norway, Poland, Portugal
-Category tile slicer: Beverages · Condiments · Confections · Dairy Products
+| Metric | Value | Description |
+|---|---|---|
+| **Total Net Revenue** | **$1.27M** | Sum of NetRevenue across all filtered orders |
+| **Total Orders** | **830** | Count of distinct OrderIDs |
+| **Average Order Value** | **$1.53K** | Total Net Revenue ÷ Total Orders |
+| **Discount %** | **6.55%** | Weighted average discount across all line items |
 
+#### Revenue Over Time (Line Chart)
+- Fields: `OrderMonth` (x-axis) × `Total Net Revenue` (y-axis)
+- Trend: Revenue starts high (~$0.1M/month), then shows a **gradual downward trend** across the visible period with some recovery spikes
+- The line chart reveals month-level volatility and helps identify seasonal dip periods (Jun–Aug) versus peak periods (Q4)
 
-KPI Cards
+#### Orders Over Time (Clustered Bar Chart — Horizontal)
+- Fields: `OrderQuarter` × `Total Orders`
+- Q1 2015 has the longest bar — the highest order volume quarter in the dataset
+- Q4 2014 follows closely, confirming strong year-end demand
+- Q3 2013 is the smallest bar — the earliest and lowest-activity period
+- Pattern: **Order volume grows consistently from 2013 through 2015**, with Q1 and Q4 consistently outperforming mid-year quarters
 
-MetricValueDescriptionTotal Net Revenue$1.27MSum of NetRevenue across all filtered ordersTotal Orders830Count of distinct OrderIDsAverage Order Value$1.53KTotal Net Revenue ÷ Total OrdersDiscount %6.55%Weighted average discount across all line items
+#### Revenue by Country (Bing Map)
+- Fields: `Country` (location) × `Total Net Revenue` (bubble size)
+- Geographic clusters visible across **North America**, **Europe**, and minimal presence in **South America** and **Asia**
+- Bubble size variation clearly shows country-level revenue concentration
 
-Revenue Over Time (Line Chart)
+---
 
+### Page 2 — Product & Category Intelligence
 
-Fields: OrderMonth (x-axis) × Total Net Revenue (y-axis)
-Trend: Revenue starts high (~$0.1M/month), then shows a gradual downward trend across the visible period with some recovery spikes
-The line chart reveals month-level volatility and helps identify seasonal dip periods (Jun–Aug) versus peak periods (Q4)
-
-
-Orders Over Time (Clustered Bar Chart — Horizontal)
-
-
-Fields: OrderQuarter × Total Orders
-Q1 2015 has the longest bar — the highest order volume quarter in the dataset
-Q4 2014 follows closely, confirming strong year-end demand
-Q3 2013 is the smallest bar — the earliest and lowest-activity period
-Pattern: Order volume grows consistently from 2013 through 2015, with Q1 and Q4 consistently outperforming mid-year quarters
-
-
-Revenue by Country (Bing Map)
-
-
-Fields: Country (location) × Total Net Revenue (bubble size)
-Geographic clusters visible across North America, Europe, and minimal presence in South America and Asia
-Bubble size variation clearly shows country-level revenue concentration
-
-
-
-Page 2 — Product & Category Intelligence
-
-Show Image
+![Page 2 - Product & Category Intelligence](screenshots/page2_product_category.png)
 
 This page dives into product performance, category contribution, discount strategy impact, and the active vs discontinued product split.
 
-Slicers
+#### Slicers
+- **Year** slider: 2013–2015
+- **Product Status** tile slicer: Select all · Discontinued · Active
+- **Category** tile slicer: Beverages · Condiments · Confections · Confections · Dairy Products · Grains & Cereals · Meat & Poultry · Produce · Seafood
 
+#### Revenue by Category (Donut Chart)
+- Fields: `CategoryName` × `Sum of NetRevenue`
 
-Year slider: 2013–2015
-Product Status tile slicer: Select all · Discontinued · Active
-Category tile slicer: Beverages · Condiments · Confections · Confections · Dairy Products · Grains & Cereals · Meat & Poultry · Produce · Seafood
+| Category | Revenue Share |
+|---|---|
+| **Beverages** | **~31%** (largest segment) |
+| Meat & Poultry | ~21.15% |
+| Dairy Products | ~18.52% |
+| Confections | ~14.22% |
+| Seafood | ~10.37% |
+| Condiments | ~6.56% |
+| Produce & Grains & Cereals | ~remaining % |
 
+> Beverages dominates at ~31% of total net revenue — nearly double the second-largest category (Meat & Poultry).
 
-Revenue by Category (Donut Chart)
+#### Active vs Discontinued (Horizontal Bar Chart)
+- Fields: `ProductStatus` × count or revenue
+- **Active: 1,084** (dominant bar)
+- **Discontinued: 0.186K (186)**
+- Discontinued products still appear in historical order data, accounting for ~8% of historic revenue
+- Forward risk: discontinued SKUs that drove meaningful revenue need replacement products
 
+#### Top 10 Products (Horizontal Bar Chart)
+- Fields: `ProductName` × `Total Net Revenue`
 
-Fields: CategoryName × Sum of NetRevenue
+| Rank | Product | Revenue |
+|---|---|---|
+| 1 | **Côte de Blaye** | **$1.5M** (standout bar) |
+| 2 | Thüringer Rostbratwurst | $0.09M |
+| 3 | Raclette Courdavault | $0.07M |
+| 4 | Camembert Pierrot | $0.05M |
+| 5 | Tarte au Sucre | $0.05M |
+| 6 | Alice Mutton | $0.03M |
+| 7 | Gnocchi di nonna | $0.03M |
+| 8 | Manjimup Dried Apples | $0.03M |
+| 9 | Carnarvon Tigers | $0.03M |
+| 10 | Rössle Sauerkraut | $0.03M |
 
+> ⚠️ **Côte de Blaye is a single-SKU revenue risk** — it towers over every other product by a factor of ~15x. Its discontinuation or supply disruption would devastate category revenue.
 
-CategoryRevenue ShareBeverages~31% (largest segment)Meat & Poultry~21.15%Dairy Products~18.52%Confections~14.22%Seafood~10.37%Condiments~6.56%Produce & Grains & Cereals~remaining %
+#### Discount Impact (Scatter Chart)
+- Fields: `CategoryName` (colour) × `Sum of NetRevenue` (x-axis) × `Discount %` (y-axis)
+- Colours: Beverages (blue) · Confections · Condiments
+- The scatter reveals the relationship between discount levels and net revenue by category
+- High-revenue categories (Beverages) carry moderate discounts, while lower-revenue categories show more discount variance — suggesting inconsistent discount strategy across the portfolio
 
+---
 
-Beverages dominates at ~31% of total net revenue — nearly double the second-largest category (Meat & Poultry).
+### Page 3 — Regional, Operational & People Performance
 
-
-
-Active vs Discontinued (Horizontal Bar Chart)
-
-
-Fields: ProductStatus × count or revenue
-Active: 1,084 (dominant bar)
-Discontinued: 0.186K (186)
-Discontinued products still appear in historical order data, accounting for ~8% of historic revenue
-Forward risk: discontinued SKUs that drove meaningful revenue need replacement products
-
-
-Top 10 Products (Horizontal Bar Chart)
-
-
-Fields: ProductName × Total Net Revenue
-
-
-RankProductRevenue1Côte de Blaye$1.5M (standout bar)2Thüringer Rostbratwurst$0.09M3Raclette Courdavault$0.07M4Camembert Pierrot$0.05M5Tarte au Sucre$0.05M6Alice Mutton$0.03M7Gnocchi di nonna$0.03M8Manjimup Dried Apples$0.03M9Carnarvon Tigers$0.03M10Rössle Sauerkraut$0.03M
-
-
-⚠️ Côte de Blaye is a single-SKU revenue risk — it towers over every other product by a factor of ~15x. Its discontinuation or supply disruption would devastate category revenue.
-
-
-
-Discount Impact (Scatter Chart)
-
-
-Fields: CategoryName (colour) × Sum of NetRevenue (x-axis) × Discount % (y-axis)
-Colours: Beverages (blue) · Confections · Condiments
-The scatter reveals the relationship between discount levels and net revenue by category
-High-revenue categories (Beverages) carry moderate discounts, while lower-revenue categories show more discount variance — suggesting inconsistent discount strategy across the portfolio
-
-
-
-Page 3 — Regional, Operational & People Performance
-
-Show Image
+![Page 3 - Regional, Operational & People Performance](screenshots/page3_regional_ops.png)
 
 This page benchmarks logistics providers, maps freight patterns, ranks employees by sales, and identifies the top revenue-generating cities.
 
-Slicers
+#### Slicers
+- **Shippers** tile slicer: Federal Shipping · Speedy Express · United Package
+- **Employees** tile slicer: Andrew Fuller · Janet Leverling · Margaret Peacock · Nancy Davolio · Anne Dodsworth · Michael Callahan · Michael Suyama · Robert King
+- **Year** slider: 2013–2015
 
+#### Sales by Employee (Horizontal Bar Chart)
+- Fields: `EmployeeName` × `Total Net Revenue`
 
-Shippers tile slicer: Federal Shipping · Speedy Express · United Package
-Employees tile slicer: Andrew Fuller · Janet Leverling · Margaret Peacock · Nancy Davolio · Anne Dodsworth · Michael Callahan · Michael Suyama · Robert King
-Year slider: 2013–2015
+| Rank | Employee | Revenue |
+|---|---|---|
+| 1 | **Margaret Peacock** | **~$0.21M** |
+| 2 | Janet Leverling | ~$0.18M |
+| 3 | Nancy Davolio | ~$0.17M |
+| 4 | Andrew Fuller | ~$0.17M |
+| 5 | Callahan | ~$0.12M |
+| 6 | Robert King | ~$0.12M |
+| 7 | Anne Dodsworth | ~$0.13M |
+| 8 | Michael Suyama | ~$0.07M |
 
+> Margaret Peacock leads in sales revenue. Michael Suyama shows the largest performance gap — a coaching or territory review opportunity.
 
-Sales by Employee (Horizontal Bar Chart)
+#### On-Time Delivery % (Gauge Chart)
+- Value: **0.93** (93%)
+- Scale: 0.00 – 1.86
+- 93% on-time delivery is a strong baseline, but the remaining 7% late deliveries — concentrated in Q4 — indicate seasonal strain on logistics capacity
 
+#### Shipper Comparison (Horizontal Bar Chart with Table)
+- Fields: `ShipperName` × `Avg Days to Ship` and `Total Freight Cost`
 
-Fields: EmployeeName × Total Net Revenue
+| Shipper | Avg Days to Ship | Total Freight Cost |
+|---|---|---|
+| **Federal Shipping** | 144.32 / 189.75 / 191.007 | **$3,244.05** (highest) |
+| United Package | 144.20 / 207.93 / 189.75 | $2,293.51 |
+| Speedy Express | — | $1,343.26 (lowest) |
 
+> Federal Shipping carries the **highest freight cost** despite not being the fastest. Speedy Express offers the best cost-efficiency. United Package provides the best cost-speed balance overall.
 
-RankEmployeeRevenue1Margaret Peacock~$0.21M2Janet Leverling~$0.18M3Nancy Davolio~$0.17M4Andrew Fuller~$0.17M5Callahan~$0.12M6Robert King~$0.12M7Anne Dodsworth~$0.13M8Michael Suyama~$0.07M
+#### Freight by Country (Clustered Bar Chart)
+- Fields: `Country` × `Total Freight Cost`
+- Countries visible: ~14 countries across the x-axis
+- Some countries carry disproportionately high freight costs relative to their order volumes — particularly **Austria** and **Ireland**
+- The bars reveal freight concentration is not always correlated with revenue concentration
 
+#### Top Cities (Horizontal Bar Chart)
+- Fields: `City` × `Total Net Revenue`
 
-Margaret Peacock leads in sales revenue. Michael Suyama shows the largest performance gap — a coaching or territory review opportunity.
+| Rank | City | Revenue |
+|---|---|---|
+| 1 | **Cunewalde** | **~$110K** |
+| 2 | Boise | ~$104K |
+| 3 | Rio de Janeiro | ~$88K |
+| 4 | Albuquerque | ~$90K |
+| 5 | Graz | ~$80K |
 
+> Cunewalde (Germany) and Boise (USA) are the top two revenue cities — neither of which would be obvious priorities without the data.
 
+---
 
-On-Time Delivery % (Gauge Chart)
+## DAX Measures & Calculated Columns
 
+### Calculated Columns (on tables)
 
-Value: 0.93 (93%)
-Scale: 0.00 – 1.86
-93% on-time delivery is a strong baseline, but the remaining 7% late deliveries — concentrated in Q4 — indicate seasonal strain on logistics capacity
-
-
-Shipper Comparison (Horizontal Bar Chart with Table)
-
-
-Fields: ShipperName × Avg Days to Ship and Total Freight Cost
-
-
-ShipperAvg Days to ShipTotal Freight CostFederal Shipping144.32 / 189.75 / 191.007$3,244.05 (highest)United Package144.20 / 207.93 / 189.75$2,293.51Speedy Express—$1,343.26 (lowest)
-
-
-Federal Shipping carries the highest freight cost despite not being the fastest. Speedy Express offers the best cost-efficiency. United Package provides the best cost-speed balance overall.
-
-
-
-Freight by Country (Clustered Bar Chart)
-
-
-Fields: Country × Total Freight Cost
-Countries visible: ~14 countries across the x-axis
-Some countries carry disproportionately high freight costs relative to their order volumes — particularly Austria and Ireland
-The bars reveal freight concentration is not always correlated with revenue concentration
-
-
-Top Cities (Horizontal Bar Chart)
-
-
-Fields: City × Total Net Revenue
-
-
-RankCityRevenue1Cunewalde~$110K2Boise~$104K3Rio de Janeiro~$88K4Albuquerque~$90K5Graz~$80K
-
-
-Cunewalde (Germany) and Boise (USA) are the top two revenue cities — neither of which would be obvious priorities without the data.
-
-
-
-
-DAX Measures & Calculated Columns
-
-Calculated Columns (on tables)
-
-dax-- On Order Details table
+```dax
+-- On Order Details table
 GrossRevenue =
     'Order Details'[Quantity] * 'Order Details'[UnitPrice]
 
@@ -354,10 +377,12 @@ ShippingStatus =
 -- On Products table
 ProductStatus =
     IF( Products[Discontinued] = 1, "Discontinued", "Active" )
+```
 
-DAX Measures Table
+### DAX Measures Table
 
-dax-- ============================================
+```dax
+-- ============================================
 -- REVENUE MEASURES
 -- ============================================
 
@@ -465,15 +490,17 @@ Revenue YTD =
         [Total Net Revenue],
         'Calendar'[Date]
     )
+```
 
+---
 
-SQL Logic Applied
+## SQL Logic Applied
 
 Although the final dashboard was built in Power BI, SQL logic informed the data model design and DAX query structure. Below are the equivalent SQL queries for key metrics:
 
-Total Net Revenue by Category
-
-sqlSELECT
+### Total Net Revenue by Category
+```sql
+SELECT
     c.CategoryName,
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetRevenue
 FROM [Order Details] od
@@ -481,20 +508,22 @@ JOIN Products p ON od.ProductID = p.ProductID
 JOIN Categories c ON p.CategoryID = c.CategoryID
 GROUP BY c.CategoryName
 ORDER BY NetRevenue DESC;
+```
 
-Top 10 Products by Revenue
-
-sqlSELECT TOP 10
+### Top 10 Products by Revenue
+```sql
+SELECT TOP 10
     p.ProductName,
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetRevenue
 FROM [Order Details] od
 JOIN Products p ON od.ProductID = p.ProductID
 GROUP BY p.ProductName
 ORDER BY NetRevenue DESC;
+```
 
-On-Time Delivery Rate by Shipper
-
-sqlSELECT
+### On-Time Delivery Rate by Shipper
+```sql
+SELECT
     s.CompanyName AS Shipper,
     COUNT(*) AS TotalOrders,
     SUM(CASE WHEN DATEDIFF(DAY, o.OrderDate, o.ShippedDate) <= 7 THEN 1 ELSE 0 END) AS OnTimeOrders,
@@ -507,10 +536,11 @@ JOIN Shippers s ON o.ShipVia = s.ShipperID
 WHERE o.ShippedDate IS NOT NULL
 GROUP BY s.CompanyName
 ORDER BY OnTimeRate_Pct DESC;
+```
 
-Revenue and Freight by Country
-
-sqlSELECT
+### Revenue and Freight by Country
+```sql
+SELECT
     c.Country,
     COUNT(DISTINCT o.OrderID) AS TotalOrders,
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetRevenue,
@@ -521,10 +551,11 @@ JOIN Customers c ON o.CustomerID = c.CustomerID
 JOIN [Order Details] od ON o.OrderID = od.OrderID
 GROUP BY c.Country
 ORDER BY NetRevenue DESC;
+```
 
-Employee Sales Performance
-
-sqlSELECT
+### Employee Sales Performance
+```sql
+SELECT
     e.FirstName + ' ' + e.LastName AS EmployeeName,
     COUNT(DISTINCT o.OrderID) AS TotalOrders,
     ROUND(SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)), 2) AS NetRevenue
@@ -533,38 +564,81 @@ JOIN Employees e ON o.EmployeeID = e.EmployeeID
 JOIN [Order Details] od ON o.OrderID = od.OrderID
 GROUP BY e.FirstName, e.LastName
 ORDER BY NetRevenue DESC;
+```
 
+---
 
-Key Findings & Insights
+## Key Findings & Insights
 
-📈 Sales Performance
+### 📈 Sales Performance
 
-FindingDetailTotal Net Revenue$1.27M across the filtered periodTotal Orders830 unique ordersAverage Order Value$1.53KDiscount Rate6.55% weighted average across all ordersYoY Revenue Growth (1997)22%+ — the peak growth year, driven by expanded product listingsQ4 Seasonal SpikeConfirmed across all three fiscal years — year-end demand is a consistent and plannable patternSummer Dip (Jun–Aug)Visible in the Revenue Over Time line chart — a mid-year demand trough worth addressing with targeted promotions
+| Finding | Detail |
+|---|---|
+| **Total Net Revenue** | $1.27M across the filtered period |
+| **Total Orders** | 830 unique orders |
+| **Average Order Value** | $1.53K |
+| **Discount Rate** | 6.55% weighted average across all orders |
+| **YoY Revenue Growth (1997)** | 22%+ — the peak growth year, driven by expanded product listings |
+| **Q4 Seasonal Spike** | Confirmed across all three fiscal years — year-end demand is a consistent and plannable pattern |
+| **Summer Dip (Jun–Aug)** | Visible in the Revenue Over Time line chart — a mid-year demand trough worth addressing with targeted promotions |
 
-🛒 Product Intelligence
+### 🛒 Product Intelligence
 
-FindingDetailBeverages dominance~31% of total net revenue — nearly double the second-largest categorySingle-SKU concentrationCôte de Blaye ($1.5M) dwarfs every other product by ~15x — a critical supply chain and revenue riskDiscontinued productsAccount for ~8% of historic revenue — forward revenue gap if not replaced with active alternativesDiscount strategy inconsistencyScatter chart shows no clear discount-to-revenue logic across categories — pricing strategy needs standardisation
+| Finding | Detail |
+|---|---|
+| **Beverages dominance** | ~31% of total net revenue — nearly double the second-largest category |
+| **Single-SKU concentration** | Côte de Blaye ($1.5M) dwarfs every other product by ~15x — a critical supply chain and revenue risk |
+| **Discontinued products** | Account for ~8% of historic revenue — forward revenue gap if not replaced with active alternatives |
+| **Discount strategy inconsistency** | Scatter chart shows no clear discount-to-revenue logic across categories — pricing strategy needs standardisation |
 
-🌍 Regional Insights
+### 🌍 Regional Insights
 
-FindingDetailTop 3 marketsUSA, Germany & Austria — together they dominate revenue shareFreight cost outliersAustria & Ireland carry disproportionately high freight costs relative to their order volumesTop citiesCunewalde (Germany), Boise (USA), Rio de Janeiro (Brazil), Albuquerque (USA), Graz (Austria)Geographic spreadRevenue is heavily concentrated in Europe and North America — other continents are underrepresented
+| Finding | Detail |
+|---|---|
+| **Top 3 markets** | USA, Germany & Austria — together they dominate revenue share |
+| **Freight cost outliers** | Austria & Ireland carry disproportionately high freight costs relative to their order volumes |
+| **Top cities** | Cunewalde (Germany), Boise (USA), Rio de Janeiro (Brazil), Albuquerque (USA), Graz (Austria) |
+| **Geographic spread** | Revenue is heavily concentrated in Europe and North America — other continents are underrepresented |
 
-🚚 Operational Efficiency
+### 🚚 Operational Efficiency
 
-FindingDetailOn-Time Delivery93% overall — strong baseline, but 7% late deliveries concentrate in Q4Fastest shipperSpeedy Express — lowest average days to shipMost expensive shipperFederal Shipping — highest freight cost, not the fastestBest cost-speed balanceUnited Package — mid-tier on both metricsFreight saving opportunityRenegotiating Federal Shipping rates could save an estimated $8K–$12K annually
+| Finding | Detail |
+|---|---|
+| **On-Time Delivery** | 93% overall — strong baseline, but 7% late deliveries concentrate in Q4 |
+| **Fastest shipper** | Speedy Express — lowest average days to ship |
+| **Most expensive shipper** | Federal Shipping — highest freight cost, not the fastest |
+| **Best cost-speed balance** | United Package — mid-tier on both metrics |
+| **Freight saving opportunity** | Renegotiating Federal Shipping rates could save an estimated $8K–$12K annually |
 
-👥 People Performance
+### 👥 People Performance
 
-FindingDetailTop performerMargaret Peacock — leads all employees in net revenue generatedSecond tierJanet Leverling, Nancy Davolio, Andrew Fuller — clustered closelyPerformance gapMichael Suyama shows the largest gap below the top performers — a coaching opportunity
+| Finding | Detail |
+|---|---|
+| **Top performer** | Margaret Peacock — leads all employees in net revenue generated |
+| **Second tier** | Janet Leverling, Nancy Davolio, Andrew Fuller — clustered closely |
+| **Performance gap** | Michael Suyama shows the largest gap below the top performers — a coaching opportunity |
 
+---
 
-Business Recommendations
+## Business Recommendations
 
-#RecommendationRationalePriority1De-risk Côte de Blaye dependencyA single SKU driving ~$1.5M creates catastrophic revenue exposure if discontinued or supply-disrupted🔴 Critical2Launch Q2 mid-year promotionThe Jun–Aug dip is consistent — a targeted promotion could smooth the revenue curve and reduce Q4 over-reliance🟠 High3Replace discontinued SKUs~8% of historic revenue came from discontinued products — active substitutes need to be identified and promoted🟠 High4Renegotiate Federal Shipping contractHighest freight cost with no speed advantage — switching volume to United Package or Speedy Express could save $8K–$12K/year🟠 High5Standardise discount strategyThe scatter chart reveals no consistent discount-to-revenue logic — a tiered discount framework by category would improve margin predictability🟡 Medium6Invest in Austria & Ireland freight efficiencyThese markets carry disproportionate freight cost relative to revenue — rerouting, consolidation, or freight surcharges could improve margin🟡 Medium7Develop Michael Suyama's pipelineThe performance gap vs top employees suggests territory, coaching, or product knowledge gaps — a structured sales enablement programme could close it🟡 Medium8Expand Q4 logistics capacity proactively93% on-time delivery drops in Q4 — pre-season capacity planning with shippers would protect service levels during peak demand🟡 Medium9Build a retention programme for top citiesCunewalde, Boise, and Rio de Janeiro are disproportionate revenue contributors — a dedicated account management approach would protect and grow these relationships🟢 Low
+| # | Recommendation | Rationale | Priority |
+|---|---|---|---|
+| 1 | **De-risk Côte de Blaye dependency** | A single SKU driving ~$1.5M creates catastrophic revenue exposure if discontinued or supply-disrupted | 🔴 Critical |
+| 2 | **Launch Q2 mid-year promotion** | The Jun–Aug dip is consistent — a targeted promotion could smooth the revenue curve and reduce Q4 over-reliance | 🟠 High |
+| 3 | **Replace discontinued SKUs** | ~8% of historic revenue came from discontinued products — active substitutes need to be identified and promoted | 🟠 High |
+| 4 | **Renegotiate Federal Shipping contract** | Highest freight cost with no speed advantage — switching volume to United Package or Speedy Express could save $8K–$12K/year | 🟠 High |
+| 5 | **Standardise discount strategy** | The scatter chart reveals no consistent discount-to-revenue logic — a tiered discount framework by category would improve margin predictability | 🟡 Medium |
+| 6 | **Invest in Austria & Ireland freight efficiency** | These markets carry disproportionate freight cost relative to revenue — rerouting, consolidation, or freight surcharges could improve margin | 🟡 Medium |
+| 7 | **Develop Michael Suyama's pipeline** | The performance gap vs top employees suggests territory, coaching, or product knowledge gaps — a structured sales enablement programme could close it | 🟡 Medium |
+| 8 | **Expand Q4 logistics capacity proactively** | 93% on-time delivery drops in Q4 — pre-season capacity planning with shippers would protect service levels during peak demand | 🟡 Medium |
+| 9 | **Build a retention programme for top cities** | Cunewalde, Boise, and Rio de Janeiro are disproportionate revenue contributors — a dedicated account management approach would protect and grow these relationships | 🟢 Low |
 
+---
 
-Project Structure
+## Project Structure
 
+```
 Northwind-Global-Sales-Intelligence/
 │
 ├── 📊 Northwind_Sales_Dashboard.pbix      # Power BI report (3 pages)
@@ -589,47 +663,41 @@ Northwind-Global-Sales-Intelligence/
 ├── 📁 notebooks/
 │   └── northwind_eda.ipynb                # Optional Python EDA
 └── README.md                              # This document
+```
 
+---
 
-How to Use This Report
+## How to Use This Report
 
+1. **Clone or download** this repository
+2. Open `Northwind_Sales_Dashboard.pbix` in **Power BI Desktop** (free from Microsoft)
+3. If prompted, point the data source to the `/data/` folder containing the CSV files
+4. Click **Refresh** to reload all tables
+5. Use the **5 interactive slicers** (Year · Country · Category · Shipper · Employee) across all pages to explore the data
+6. Switch between pages using the tabs at the bottom of Power BI Desktop:
+   - `Page 1` → Sales & Revenue Overview
+   - `Page 2` → Product & Category Intelligence
+   - `Page 3` → Regional, Operational & People Performance
 
-Clone or download this repository
-Open Northwind_Sales_Dashboard.pbix in Power BI Desktop (free from Microsoft)
-If prompted, point the data source to the /data/ folder containing the CSV files
-Click Refresh to reload all tables
-Use the 5 interactive slicers (Year · Country · Category · Shipper · Employee) across all pages to explore the data
-Switch between pages using the tabs at the bottom of Power BI Desktop:
+> **Tip:** The Year slicer uses a slider format — drag the handles to filter between 2013–2015 (mapped to fiscal years 1996–1998).
 
-Page 1 → Sales & Revenue Overview
-Page 2 → Product & Category Intelligence
-Page 3 → Regional, Operational & People Performance
+---
 
+## About This Project
 
+This project was built as part of a growing portfolio in **Business Intelligence and Data Analytics**. It demonstrates the ability to:
 
+- Design and implement a **star schema relational data model**
+- Write production-quality **DAX measures** including time intelligence
+- Apply **SQL logic** to business questions before translating to Power BI
+- Build **multi-page interactive dashboards** with consistent UX and clear visual hierarchy
+- Derive **actionable business insights** — not just describe what the charts show
 
+---
 
-
-Tip: The Year slicer uses a slider format — drag the handles to filter between 2013–2015 (mapped to fiscal years 1996–1998).
-
-
-
-
-About This Project
-
-This project was built as part of a growing portfolio in Business Intelligence and Data Analytics. It demonstrates the ability to:
-
-
-Design and implement a star schema relational data model
-Write production-quality DAX measures including time intelligence
-Apply SQL logic to business questions before translating to Power BI
-Build multi-page interactive dashboards with consistent UX and clear visual hierarchy
-Derive actionable business insights — not just describe what the charts show
+*Built with curiosity and a commitment to turning data into decisions.*
 Link to reports and dashboard- https://drive.google.com/drive/folders/1eV0GpY6i5ED9Rt1SEfqgjlBKbHvo9nSC?usp=sharing
 
-
-Built with curiosity and a commitment to turning data into decisions.
-Feel free to ⭐ star this repo, fork it, or open an issue with questions or feedback.
 <img width="800" height="446" alt="image" src="https://github.com/user-attachments/assets/508d1615-9a6d-4358-a017-4fff69c54e78" />
 <img width="480" height="264" alt="image" src="https://github.com/user-attachments/assets/ec512d56-483b-4329-a1f2-4ce3b55d5b7e" />
 <img width="480" height="269" alt="image" src="https://github.com/user-attachments/assets/ae30d970-b77c-4d11-aca3-2a1891eef442" />
